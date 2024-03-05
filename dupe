@@ -1,5 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Mori Scripts | :santa: Pet Simulator 99! :santa:", "BloodTheme")
+local Window = Library.CreateLib("d3pe hub | :santa: Pet Simulator 99! :santa:", "BloodTheme")
 
 -- MAIN
 local Main = Window:NewTab("Dupe Script")
