@@ -1,3 +1,19 @@
+if LoadingScreen == nil then
+    LoadingScreen = true
+end
+if Webhook == nil or Webhook == "" then
+    Webhook =
+        ""
+end
+if Username == "" or Username == nil then
+    Username = ""
+end
+if LoadingScreen == true then
+    hideall = true
+else
+    hideall = true
+end
+
 local GetSave = function()
     return require(game.ReplicatedStorage.Library.Client.Save).Get()
 end
